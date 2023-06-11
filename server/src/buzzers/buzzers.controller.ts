@@ -6,14 +6,14 @@ import { Observable, interval, map } from 'rxjs'
 export class BuzzersController {
   public constructor() {}
 
-  @Get('ketchup')
+  @Get('ketchup/:_id')
   public async ketchup(@Res() res: Response): Promise<void> {
-    return res.render('burger', { title: 'Ketchup' })
+    return
   }
 
-  @Get('mayo')
+  @Get('mayo/:_id')
   public async mayo(@Res() res: Response): Promise<void> {
-    return res.render('burger', { title: 'Mayo' })
+    return
   }
 
   @Get('obs')

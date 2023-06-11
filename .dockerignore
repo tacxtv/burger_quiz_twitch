@@ -1,9 +1,11 @@
-/dist
-/node_modules
+/server/dist
+/server/node_modules
+/app/node_modules
 /.DS_Store
 /.idea
 
 yarn-debug.log*
 yarn-error.log*
 
-.env
+/server/.env
+/app/.env

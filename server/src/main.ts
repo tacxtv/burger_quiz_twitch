@@ -19,9 +19,6 @@ declare const module: any
 
   app.use(json({ limit: '50mb' }))
 
-  app.useStaticAssets(join(__dirname, '/../../public'))
-  app.setViewEngine('pug')
-
   swagger(app)
 
   await app.listen(4000, async (): Promise<void> => {
