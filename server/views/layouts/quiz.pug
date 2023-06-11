@@ -1,0 +1,15 @@
+html(lang='fr')
+  head
+    block head
+      include ../partials/vuetify.head.pug
+  body(style="background-color: #1e1e1e;")
+    block body
+      div#v-app(style="height:100%")
+        v-layout(view="lHh Lpr lFf" style="height:100%")
+          v-main(style="height:100%")
+            v-container(fluid fill-height style="height: 100%; display: flex;")
+              v-row(align="center" justify="center" no-gutters style="flex-direction: column; gap: 10px;")
+                block content
+                pre #{JSON.stringify({params, prompt}, null, '\t')}
+    block script
+      include ../partials/vuetify.script.pug
