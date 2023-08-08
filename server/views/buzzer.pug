@@ -1,0 +1,27 @@
+extends layouts/obs
+
+block content
+  div#buzzers(style='width: 1000px; height: 800px;')
+
+block post-script
+  script(type='application/javascript' src='/scripts/overlay.js')
+  script(type='application/javascript').
+    new OverlaySSE('/buzzers/evt/64d02764f1f20088a995657f')
+    const subscribe = ['bqt', 'buzzers', '64d02764f1f20088a995657f']
+    document.addEventListener(subscribe.join(':'), (event) => {
+      console.log(event)
+      switch(event.detail.type) {
+        case 'ketchup':
+          document.querySelector('#buzzers').innerHTML = '<img src="/assets/images/burgers/lettre_K.png" />'
+          new Audio('/assets/audio/BUZ_KETCHUP.mp3').play()
+          break
+        case 'mayo':
+          document.querySelector('#buzzers').innerHTML = '<img src="/assets/images/burgers/lettre_M.png" />'
+          new Audio('/assets/audio/BUZ_MAYO.mp3').play()
+          break
+      }
+
+      setTimeout(() => {
+          document.querySelector('#buzzers').innerHTML = ''
+      }, 5000)
+    })

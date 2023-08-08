@@ -1,0 +1,27 @@
+extends layouts/obs
+
+block content
+  div#scores(style='width: 1000px; height: 800px;' x-init='initPostScript()' x-cloak)
+    img(x-bind:src="`/assets/images/scores/ketchup/KETCHUP_AVEC_CHIFFRES_${$store.ketchup}.png`")
+    img(x-bind:src="`/assets/images/scores/mayo/MAYO_AVEC_CHIFFRES_${$store.mayo}.png`")
+
+block post-script
+  script(type='application/javascript' src='/scripts/overlay.js')
+  script(type='application/javascript').
+    function initPostScript() {
+      window.Alpine.store('ketchup', `0`.padStart(2, '0'))
+      window.Alpine.store('mayo', `0`.padStart(2, '0'))
+      new OverlaySSE('/scores/evt/' + '64d02764f1f20088a995657f')
+      const subscribe = ['bqt', 'scores', '64d02764f1f20088a995657f']
+      document.addEventListener(subscribe.join(':'), (event) => {
+        console.log(event)
+        switch(event.detail.type) {
+          case 'ketchup':
+            window.Alpine.store('ketchup', `${event.detail.score}`.padStart(2, '0'))
+            break
+          case 'mayo':
+            window.Alpine.store('mayo', `${event.detail.score}`.padStart(2, '0'))
+            break
+        }
+      })
+    }
