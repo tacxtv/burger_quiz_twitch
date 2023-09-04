@@ -34,7 +34,7 @@ export default {
       try {
         // @ts-ignore
         const data = (await $fetch(
-          `/buzzers/buzz/${this.$route.params.sauce}/${this.$route.params._id}`,
+          `/api/buzzers/buzz/${this.$route.params.sauce}/${this.$route.params._id}`,
           { baseURL: this.config.public.apiUrl },
         )) as any
         this.buzzed = !this.buzzed

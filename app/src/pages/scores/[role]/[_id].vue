@@ -47,7 +47,7 @@ export default {
       }
       try {
         await $fetch(
-          `/scores/update/${team}/${this.$route.params._id}/${this.scores[team]}`,
+          `/api/scores/update/${team}/${this.$route.params._id}/${this.scores[team]}`,
           { baseURL: this.config.public.apiUrl },
         )
       } catch(e) {
