@@ -20,6 +20,7 @@ declare const module: any
   app.use(json({ limit: '50mb' }))
   app.setViewEngine('pug')
   app.useStaticAssets('public')
+  app.setGlobalPrefix('api')
 
   swagger(app)
 
