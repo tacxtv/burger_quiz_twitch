@@ -15,16 +15,16 @@ import { RedisOptions } from 'ioredis'
       isGlobal: true,
       load: [config],
     }),
-    MongooseModule.forRootAsync({
-      imports: [ConfigModule],
-      inject: [ConfigService],
-      useFactory: async (config: ConfigService) => {
-        return {
-          ...config.get<MongooseModuleOptions>('mongoose.options'),
-          uri: config.get<string>('mongoose.uri'),
-        }
-      },
-    }),
+    // MongooseModule.forRootAsync({
+    //   imports: [ConfigModule],
+    //   inject: [ConfigService],
+    //   useFactory: async (config: ConfigService) => {
+    //     return {
+    //       ...config.get<MongooseModuleOptions>('mongoose.options'),
+    //       uri: config.get<string>('mongoose.uri'),
+    //     }
+    //   },
+    // }),
     RedisModule.forRootAsync({
       imports: [ConfigModule],
       inject: [ConfigService],
