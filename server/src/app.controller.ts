@@ -8,8 +8,8 @@ import { Public } from './public.decorator'
 export class AppController {
   public constructor(private readonly service: AppService) {}
 
-  @Get()
-  public root(@Res() res: Response): Response {
+  @Get('info')
+  public info(@Res() res: Response): Response {
     return res.json(this.service.getInfo())
   }
 }

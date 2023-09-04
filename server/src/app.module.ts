@@ -8,6 +8,8 @@ import { ScoresModule } from './scores/scores.module'
 import { MongooseModule, MongooseModuleOptions } from '@nestjs/mongoose'
 import { RedisModule } from '@nestjs-modules/ioredis'
 import { RedisOptions } from 'ioredis'
+import { ServeStaticModule } from '@nestjs/serve-static'
+import { join } from 'path'
 
 @Module({
   imports: [
@@ -25,6 +27,9 @@ import { RedisOptions } from 'ioredis'
     //     }
     //   },
     // }),
+    ServeStaticModule.forRoot({
+      rootPath: join(__dirname, '../../..', 'app/.output/public'),
+    }),
     RedisModule.forRootAsync({
       imports: [ConfigModule],
       inject: [ConfigService],

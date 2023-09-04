@@ -1,3 +1,3 @@
 <template>
-  <div>Laulauuuu</div>
+  <div>Burger Quizz app</div>
 </template>
