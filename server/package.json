@@ -11,7 +11,7 @@
     "start": "nest start",
     "start:dev": "nest start --watch",
     "start:debug": "nest start --debug --watch",
-    "start:prod": "node dist/main",
+    "start:prod": "node dist/src/main",
     "test:watch": "jest --watch"
   },
   "dependencies": {
@@ -67,5 +67,9 @@
   },
   "peerDependencies": {
     "express": "^4.17.1"
+  },
+  "resolutions": {
+    "wrap-ansi": "7.0.0",
+    "string-width": "4.1.0"
   }
 }
