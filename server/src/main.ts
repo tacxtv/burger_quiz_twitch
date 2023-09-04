@@ -23,7 +23,7 @@ declare const module: any
 
   swagger(app)
 
-  await app.listen(4000, async (): Promise<void> => {
+  await app.listen(process.env.BQT_PORT || 4000, async (): Promise<void> => {
     Logger.log('@tacxtv/burger_quiz_twitch is READY on <http://localhost:4000>')
   })
 
