@@ -55,11 +55,11 @@ export default {
       switch(event.detail.type) {
         case 'ketchup':
           this.buzzedBy = 'K'
-          new Audio('/api/assets/audio/BUZ_KETCHUP.mp3').play()
+          new Audio('/assets/audio/BUZ_KETCHUP.mp3').play()
           break
         case 'mayo':
           this.buzzedBy = 'M'
-          new Audio('/api/assets/audio/BUZ_MAYO.mp3').play()
+          new Audio('/assets/audio/BUZ_MAYO.mp3').play()
           break
       }
 
