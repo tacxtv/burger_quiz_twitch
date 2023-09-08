@@ -6,7 +6,7 @@ block content
 block post-script
   script(type='application/javascript' src='/scripts/overlay.js')
   script(type='application/javascript').
-    new OverlaySSE('/buzzers/evt/64d02764f1f20088a995657f')
+    new OverlaySSE('/api/buzzers/evt/64d02764f1f20088a995657f')
     const subscribe = ['bqt', 'buzzers', '64d02764f1f20088a995657f']
     document.addEventListener(subscribe.join(':'), (event) => {
       console.log(event)

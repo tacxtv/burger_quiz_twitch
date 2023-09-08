@@ -11,7 +11,7 @@ block post-script
     function initPostScript() {
       window.Alpine.store('ketchup', `0`.padStart(2, '0'))
       window.Alpine.store('mayo', `0`.padStart(2, '0'))
-      new OverlaySSE('/scores/evt/' + '64d02764f1f20088a995657f')
+      new OverlaySSE('/api/scores/evt/' + '64d02764f1f20088a995657f')
       const subscribe = ['bqt', 'scores', '64d02764f1f20088a995657f']
       document.addEventListener(subscribe.join(':'), (event) => {
         console.log(event)
