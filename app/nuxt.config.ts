@@ -4,6 +4,9 @@ const apiUrl = process.env.API_URL || 'http://localhost:4000'
 export default defineNuxtConfig({
   devtools: { enabled: true },
   srcDir: 'src',
+  css: [
+    '~/assets/global.css',
+  ],
   app: {
     head: {
       script: [
