@@ -14,6 +14,20 @@ build: ## Build Docker image
 	@printf "\033[33mBuilding Docker image \033[36m$(DOCKER_IMG)\033[0m...\n"
 	@docker build -t $(DOCKER_IMG) .
 
+push:
+	@printf "\033[33mPushing Docker image \033[36m$(DOCKER_IMG)\033[0m...\n"
+	@docker push $(DOCKER_IMG)
+
+start:
+	@printf "\033[33mStarting \033[36m$(DOCKER_NAME)\033[0m...\n"
+	@docker run -it --rm \
+		--name $(DOCKER_NAME) \
+		--add-host $(DOCKER_HOSTINTERNAL):host-gateway \
+		--network $(DOCKER_NETWORK) \
+		-v $(CURDIR):/usr/src/app \
+		-p 4000:4000 \
+		$(DOCKER_IMG)
+
 dbs: ## Start Databases in Docker
 	@docker run -d --rm \
 		--add-host $(DOCKER_HOSTINTERNAL):host-gateway \
@@ -22,14 +36,17 @@ dbs: ## Start Databases in Docker
 		-p 6379:6379 \
 		redis
 
-	@docker volume create $(DOCKER_NAME)-mongodb
-	@docker run -d --rm \
-		--name $(DOCKER_NAME)-mongodb \
-		--add-host $(DOCKER_HOSTINTERNAL):host-gateway \
-		-v $(DOCKER_NAME)-mongodb:/data/db \
-		-p 27017:27017 \
-		--network $(DOCKER_NETWORK) \
-		mongo:5.0 --wiredTigerCacheSizeGB 1.5 --quiet || true
+#	@docker volume create $(DOCKER_NAME)-mongodb
+#	@docker run -d --rm \
+#		--name $(DOCKER_NAME)-mongodb \
+#		--add-host $(DOCKER_HOSTINTERNAL):host-gateway \
+#		-v $(DOCKER_NAME)-mongodb:/data/db \
+#		-p 27017:27017 \
+#		--network $(DOCKER_NETWORK) \
+#		mongo:5.0 --wiredTigerCacheSizeGB 1.5 --quiet || true
+
+stop: ## Stop Databases in Docker
+	@docker stop $(DOCKER_NAME) || true
 
 stopdbs: ## Stop Databases in Docker
 	@docker stop $(DOCKER_NAME)-redis $(DOCKER_NAME)-mongodb || true

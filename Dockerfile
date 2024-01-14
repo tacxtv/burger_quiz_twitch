@@ -5,17 +5,27 @@ LABEL org.opencontainers.image.authors="12997062+tacxou@users.noreply.github.com
 
 WORKDIR /usr/src/app
 
+COPY . .
+
 ADD Makefile .
-ADD package.json .
-ADD *.lock .
 
-RUN yarn install \
+RUN cd app && yarn install \
   --prefer-offline \
-  --pure-lockfile \
+  --frozen-lockfile \
   --non-interactive \
-  --production=true
+  --production=false && \
+    yarn generate
 
-COPY --from=builder /usr/src/app/dist ./dist
+WORKDIR /usr/src/app
+
+RUN cd server && yarn install \
+  --prefer-offline \
+  --frozen-lockfile \
+  --non-interactive \
+  --production=false && \
+    yarn build
+
+WORKDIR /usr/src/app/server
 
 EXPOSE 4000
 
